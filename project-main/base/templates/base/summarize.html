@@ -1,0 +1,28 @@
+{% extends "navbar.html" %} 
+{% load bootstrap5 %}
+{% block content %}
+<style>
+  .summarize{
+    margin: auto;
+    width: 30%;
+  }
+</style>
+
+<form method="post">
+  {% csrf_token %} 
+  <div class="summarize">
+    <h1>Summarize Form</h1>
+    <br>
+    <br>
+    <br>
+    <br>
+    {% bootstrap_form form %}
+    <input type="submit" class="btn btn-success" value="Summarize">
+    <!-- <button type="submit">Summarize</button> -->
+  </div>
+
+  
+</form>
+{% if response %}
+<div><p>{{response.text}}</p></div>
+{% endif%} {% endblock content %}

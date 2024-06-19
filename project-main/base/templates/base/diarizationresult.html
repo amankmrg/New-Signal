@@ -1,0 +1,22 @@
+{% extends 'navbar.html' %}
+{% load static %}
+{% load bootstrap5 %}
+{% block content %}
+<body>
+   <h1>Speaker Diarization Results</h1>
+    
+    <ul>
+    {% for trans in transcript %}
+        <li>
+            <strong>Speaker{{trans.speaker}}: </strong> {{trans.text}}<br>
+        </li>
+    {% endfor %}
+    </ul> 
+</body>
+
+
+{% endblock content %}
+
+
+
+

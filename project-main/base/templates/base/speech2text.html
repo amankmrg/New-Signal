@@ -1,0 +1,31 @@
+{% extends "navbar.html" %}
+{% load bootstrap5 %}
+{% block content %}
+<style>
+  .transcript{
+    margin: auto;
+    width: 30%;
+  }
+</style>
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %} 
+  <div class="transcript">
+    <h1>Speech to Text Form</h1>
+    <br>
+    <br>
+    <br>
+    <br>
+    {% bootstrap_form form %}
+    <input type="submit" class="btn btn-success" value="Submit">
+    <!-- <button type="submit">Summarize</button> -->
+  </div>
+  <!-- <button type="submit">Submit</button> -->
+</form>
+
+{% if response %}
+<div>
+  <p>Transcription:</p>
+  <p>{{ response.text }}</p>
+</div>
+{% endif %} {% endblock content %}

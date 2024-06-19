@@ -1,0 +1,165 @@
+{% extends 'navbar.html' %}
+
+{% block content %}
+<style>
+    .docname{
+        margin-left:5px ;
+    }
+    .figure{
+        width: 400px;
+        height: 400px;
+    }
+</style>
+<div class="docname">
+    <h4>@{{user.username}}</h4>
+</div>
+<!-- <p>{{user.username}}</p> -->
+
+{% for appointment in appointments%}
+<table class="table table-striped">
+    <!-- <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead> -->
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Appointment Date:</td>
+        <td>{{appointment.date}}</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Age:</td>
+        <td>{{appointment.age}}</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Gender:</td>
+        <td>{{appointment.gender}}</td>
+      </tr>
+      <tr>
+        <th scope="row">4</th>
+        <td>Doctor Name:</td>
+        <td>{{appointment.doctor_name}}</td>
+      </tr>
+      <tr>
+        <th scope="row">5</th>
+        <td>Speciality:</td>
+        <td>{{appointment.speciality}}</td>
+      </tr>
+      <tr>
+        <th scope="row">6</th>
+        <td>Symptom:</td>
+        <td>{{appointment.symptom}}</td>
+      </tr>
+      <tr>
+        <th scope="row">7</th>
+        <td>Diagnosis:</td>
+        <td>{{appointment.diagnosis}}</td>
+      </tr>
+      <tr>
+        <th scope="row">8</th>
+        <td>Prescriptions:</td>
+        <td>{{appointment.prescriptions}}</td>
+      </tr>
+      <tr>
+        <th scope="row">9</th>
+        <td>Follow up date:</td>
+        <td>{{appointment.followupdate}}</td>
+      </tr>
+      <tr>
+        <th scope="row">10</th>
+        <td>Lab Report:</td>
+        <td><figure class="figure">
+            <img src="{{appointment.labreport.url}}" class="figure" alt="...">
+          </figure>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<!-- <div class="vstack gap-3">
+    <div class="p-2">First item</div>
+    <div class="p-2">Second item</div>
+    <div class="p-2">Third item</div>
+</div>
+<div>
+    <h3 style="display: inline;">Appointment Date: </h3>
+    <p style="display: inline-block;">{{appointment.date}}</p>
+</div>
+
+<div>
+    <h3 style="display: inline; ">Age: </h3>
+    <p style="display: inline-block;">{{appointment.age}}</p>
+</div>
+
+<div>
+    <h3 style="display: inline;">Gender: </h3>
+    <p style="display: inline-block;">{{appointment.gender}}</p>
+</div>
+
+<div>
+    <h3 style="display: inline;">Doctor Name: </h3>
+    <p style="display: inline-block;">{{appointment.doctor_name}}</p>
+</div>
+
+<div>
+    <h3 style="display: inline;">Speciality: </h3>
+    <p style="display: inline-block;">{{appointment.speciality}}</p>
+</div>
+<div>
+    <h3 style="display: inline;">Symptom: </h3>
+    <p style="display: inline-block;">{{appointment.symptom}}</p>
+</div>
+
+<div>
+    <h3 style="display: inline;">Diagnosis: </h3>
+    <p style="display: inline-block;">{{appointment.diagnosis}}</p>
+</div>
+
+<div>
+    <h3 style="display: inline;">Prescriptions: </h3>
+    <p style="display: inline-block;">{{appointment.prescriptions}}</p>
+</div>
+
+<div>
+    <h3 style="display: inline;">Labreport: </h3>
+    <img src="{{appointment.labreport.url}}" alt="" width="600px" height="400px">
+</div>
+<div>
+    <h3 style="display: inline;">Follow up date: </h3>
+    <p style="display: inline-block;">{{appointment.followupdate}}</p>
+</div>
+
+<br> -->
+<br>
+
+
+{% endfor %}
+
+
+
+
+{% for patient in patients %}
+
+<div class="card">
+    <div class="card-header">
+        {{patient.user}}
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{patient.user.email}}</h5>
+      <a href="{% url 'particularappointments' patient.user.id %}" class="btn btn-primary">View Appointment</a>
+    </div>
+  </div>
+  <br>
+  <br>
+
+<!-- <a href="{% url 'particularappointments' patient.user.id %}"><h3>{{patient.user}}</h3></a>
+<p>{{patient.user.email}}</p> -->
+
+{% endfor %}
+
+{% endblock content %}

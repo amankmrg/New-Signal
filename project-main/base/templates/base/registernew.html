@@ -1,0 +1,21 @@
+{% extends 'navbar.html' %}
+
+{% block content %}
+<style>
+    .newreg{
+        text-align: center;
+
+    }
+</style>
+<div class="newreg">
+    <a href="{% url 'registerpatient' %}"><h3>Register as Patient</h3></a>
+        <br>
+        <a href="{% url 'registerdoctor' %}"><h3>Register as Doctor</h3></a>
+        <br>
+        <p>Already Registered?</p>
+        <a href="{% url 'login' %}" class="btn btn-info" role="button">Login</a>
+</div>
+    
+    
+
+{% endblock content %}

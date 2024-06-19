@@ -1,0 +1,33 @@
+{% extends 'navbar.html' %}
+{% load static %}
+
+
+
+<body>
+    {% block content %}
+    <style>
+        .username{
+            margin-left: 5px;
+            margin-top: 5px;
+        }
+    </style>
+    {% if request.user.is_authenticated %}
+    <div class="username">
+        <h2>Welcome {{request.user.name}}</h2>
+    </div>
+        
+    {% endif %}
+        <!-- {% if request.user.is_authenticated %}
+            {% if request.user.is_patient == True %}
+            <a href="{% url 'viewappointment' user.id %}">View Appointments</a>
+            {% else %}
+            <a href="{% url 'doctorappointments' user.id %}">Case History</a>
+            {% endif %}
+        {% endif %} -->
+    
+
+    {% endblock content %}
+
+</body>
+
+

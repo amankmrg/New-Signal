@@ -1,0 +1,32 @@
+{% extends 'navbar.html' %}
+{% load bootstrap5 %}
+{% block content %}
+<style>
+    .regform{
+        margin: auto;
+        width: 40%;
+    }
+    .abc{
+        text-align: center;
+    }
+</style>
+    <form action="" method="post">
+        {% csrf_token %}
+
+        {% for m in message %}
+        <h3>User does not exist. Please register first</h3>
+        {% endfor %}
+        <div class="regform">
+            {% bootstrap_form form %}
+            <input type="submit" class="btn btn-success" value="Register">
+        </div>
+        
+        <!-- {{form.as_p}} -->
+        
+    </form>
+    <div class="abc">
+        <p>Already Registered?</p>
+        <a href="{% url 'login' %}" class="btn btn-info" role="button">Login</a>
+    </div>
+    
+{% endblock content %}

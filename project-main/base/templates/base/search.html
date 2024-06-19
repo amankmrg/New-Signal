@@ -1,0 +1,49 @@
+{% extends 'navbar.html' %}
+{% block content %}
+
+<style>
+    .search{
+        width: 30%;
+    }
+
+</style>
+
+
+<body>
+
+    <div class="search">
+        <form class="d-flex"  role="search" action="{% url 'search' %}">
+            {% csrf_token %}
+            <input class="form-control me-2" type="search" placeholder="Search Patients" aria-label="Search" name="q">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>
+    
+     <!-- <form action="{% url 'search' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="q" placeholder="Search Patients">
+     </form> -->
+    
+
+    <div>
+        {% for user in users %}
+            {% if user.is_patient == True %}
+            <div class="card">
+                <div class="card-header">
+                    {{user.name}}
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">{{user.email}}</h5>
+                  <a href="{% url 'appointment' user.id %}" class="btn btn-primary">Add Appointment</a>
+                </div>
+              </div>
+              <br>
+              <br>
+                
+            {% endif %}
+    
+        {% endfor %}
+    </div>
+    {% endblock content %}
+
+</body>

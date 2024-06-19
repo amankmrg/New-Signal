@@ -1,0 +1,115 @@
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Document</title>
+    
+</head>
+<body>
+    <style>
+        .navigation{
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+        }
+        .middle{
+            display: grid;
+            grid-template-columns: 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr;
+        }
+         .getstarted{
+            margin-left: 180px;
+        } 
+        .rightone{
+            float: right;
+        }
+        
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  
+    <!-- <a href="{% url 'new' %}">New</a> -->
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <div>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary" >
+            <div class="container-fluid">
+              <a class="navbar-brand" href="{% url 'home' %}"><h3>HealthBridge</h3></a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Services</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Team</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'diarize' %}">Speaker Diarization</a>
+                  </li>
+                  <li class="nav-item">
+                    {% if request.user.is_authenticated %}
+                    <a class="nav-link" href="{%url 'logout'%} ">Logout</a>
+                    {% else %}
+                    <a class="nav-link" href="{%url 'registernew'%} ">Register/Login</a>
+                    {% endif %}
+                  </li>
+                  <li class="nav-item">
+                    {% if request.user.is_authenticated %}
+                        {%if request.user.is_doctor == True %}
+                            <a class="nav-link" href="{%url 'getstarted' %} ">Get Started</a>
+                        {% else %}
+                            <a class="nav-link" href="{% url 'viewappointment' user.id %}">View Appointments</a>
+                        {% endif %}
+                    {% endif %}
+                  </li>
+                  {%if request.user.is_doctor == True %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'speech2text'%}">Transcription<a>
+                  </li>
+                  <li class="nav-item"></li>
+                    <a class="nav-link" href="{% url 'summarize'%}">Summarize<a>
+                  </li>
+
+                  
+                  {% endif %}
+                </ul>
+                
+              </div>
+              {%if request.user.is_doctor == True %}
+              <div class="rightone">
+                <a class="nav-link" href="{% url 'doctorappointments' user.id %}">Case History<a>
+              </div>
+              {% endif %}
+              {%if request.user.is_patient == True %}
+              <div class="rightone">
+                <a class="nav-link" href="{% url 'viewappointment' user.id %}">View Appointments<a>
+              </div>
+              {%endif%}
+            </div>
+          </nav>
+    </div>
+    
+    {% block content %}
+
+    {% endblock content %}
+</body>
+</html>

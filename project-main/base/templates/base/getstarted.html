@@ -1,0 +1,39 @@
+{% extends 'navbar.html' %}
+{% load bootstrap5 %}
+{% block content %}
+<style>
+    .form1{
+        margin: auto;
+        width: 40%;
+    }
+</style>
+{% if indi == "appointment" %}
+
+<form action="{% url 'appointment' pk %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form1">
+        {% bootstrap_form form %}
+        <input type="submit" class="btn btn-success" value="Submit">
+    </div>
+    <div>
+
+    </div>
+    
+    <!-- {{form}} -->
+    
+</form>
+
+
+{% else %}
+<form action="{% url 'getstarted' %}"  method = 'post'>
+    {% csrf_token %}
+    {% bootstrap_form form %}
+
+    <!-- {{form}} -->
+    
+    <input type="submit" value="submit">
+
+</form>
+
+{% endif %}
+{% endblock content %}
